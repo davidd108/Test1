@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         url = decoded.iss;
         email = decoded.email;
     } catch (error) {
-        mostrarAlerta("Hubo un error con el token de recuperación de contraseña.");
+        mostrarAlerta("There was an error with the password recovery access token.");
         buttonSubmit.setAttribute("disabled", "disabled");
         passwordInput.setAttribute("readonly", "true");
         confirmPasswordInput.setAttribute("readonly", "true");
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const confirmPassword = confirmPasswordInput.value;
 
         if (password.length < 6) {
-            mostrarAlerta("La contraseña debe contener al menos 6 caracteres.");
+            mostrarAlerta("The password must contain at least 6 characters.");
             buttonSubmit.removeAttribute("disabled");
             passwordInput.removeAttribute("readonly");
             confirmPasswordInput.removeAttribute("readonly");
@@ -69,27 +69,27 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.msg && data.msg.includes("expired")) {
-                    mostrarAlerta("El token ha caducado.");
+                    mostrarAlerta("The access token has expired.");
                 } else if (data.msg && data.msg.includes("different")) {
-                    mostrarAlerta("La nueva contraseña debe ser diferente a la anterior.");
+                    mostrarAlerta("The new password must be different from the old one.");
                 } else if (data && data.id) {
-                    mostrarAlerta("La contraseña ha sido actualizada.");
+                    mostrarAlerta("The password has been updated.");
                     passwordInput.value = "";
                     confirmPasswordInput.value = "";
                 } else {
-                    mostrarAlerta("Hubo un error al actualizar la contraseña.");
+                    mostrarAlerta("There was an error updating the password.");
                 }
             })
             .catch(error => {
                 console.log(error);
-                mostrarAlerta("Hubo un error al actualizar la contraseña. Intentelo más tarde.");
+                mostrarAlerta("There was an error updating the password. Try again later.");
             }).finally(() => {
                 buttonSubmit.removeAttribute("disabled");
                 passwordInput.removeAttribute("readonly");
                 confirmPasswordInput.removeAttribute("readonly");
             });
         } else {
-            mostrarAlerta('Las contraseñas no coinciden.');
+            mostrarAlerta('Passwords do not match.');
             buttonSubmit.removeAttribute("disabled");
             passwordInput.removeAttribute("readonly");
             confirmPasswordInput.removeAttribute("readonly");

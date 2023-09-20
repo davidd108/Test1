@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const confirmPassword = confirmPasswordInput.value;
 
         if (password.length < 6) {
-            mostrarAlerta("La contraseña debe contener al menos 6 caracteres");
+            mostrarAlerta("La contraseña debe contener al menos 6 caracteres.");
             buttonSubmit.removeAttribute("disabled");
             passwordInput.removeAttribute("readonly");
             confirmPasswordInput.removeAttribute("readonly");
@@ -71,13 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.msg && data.msg.includes("expired")) {
                     mostrarAlerta("El token ha caducado.");
                 } else if (data.msg && data.msg.includes("different")) {
-                    mostrarAlerta("La nueva contraseña debe ser diferente a la anterior");
+                    mostrarAlerta("La nueva contraseña debe ser diferente a la anterior.");
                 } else if (data && data.id) {
-                    mostrarAlerta("La contraseña ha sido actualizada");
+                    mostrarAlerta("La contraseña ha sido actualizada.");
                     passwordInput.value = "";
                     confirmPasswordInput.value = "";
                 } else {
-                    mostrarAlerta("Hubo un error al actualizar la contraseña");
+                    mostrarAlerta("Hubo un error al actualizar la contraseña.");
                 }
             })
             .catch(error => {
